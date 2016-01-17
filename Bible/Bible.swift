@@ -103,4 +103,30 @@ class Bible {
         let index = indexPathToIndex(indexPath)
         return books[index]
     }
+    
+    func getVerses(book: Int, chapter: Int) -> [String] {
+        if let path = NSBundle.mainBundle().pathForResource("data/K.\(book + 1).\(chapter)", ofType: ""), data = NSData(contentsOfFile: path) {
+            return dataToArray(data)
+        }
+        
+        return [String]()
+    }
+    
+    func getSubVerses(book: Int, chapter: Int) -> [String] {
+        if let path = NSBundle.mainBundle().pathForResource("data/E.\(book + 1).\(chapter)", ofType: ""), data = NSData(contentsOfFile: path) {
+            return dataToArray(data)
+        }
+        
+        return [String]()
+    }
+    
+    func dataToArray(data: NSData) -> [String] {
+        var verses = [String]()
+        if let jsonData = try! NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments) as? NSArray {
+            for verse in jsonData as! [String] {
+                verses.append(verse)
+            }
+        }
+        return verses
+    }
 }
