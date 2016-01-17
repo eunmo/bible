@@ -10,7 +10,13 @@ import UIKit
 
 class VerseTableViewController: UITableViewController {
     
-    let verses = [
+    // MARK: Properties
+    
+    var bible: Bible?
+    var book: Int?
+    var chapter: Int?
+    
+    var verses = [
     "태초에 하나님이 천지를 창조하시니라",
     "땅이 혼돈하고 공허하며 흑암이 깊음 위에 있고 하나님의 신은 수면에 운행하시니라",
     "하나님이 가라사대 빛이 있으라 하시매 빛이 있었고",
@@ -44,7 +50,7 @@ class VerseTableViewController: UITableViewController {
         "하나님이 그 지으신 모든 것을 보시니 보시기에 심히 좋았더라 저녁이 되며 아침이 되니 이는 여섯째 날이니라"
     ]
     
-    let subVerses = [
+    var subVerses = [
         "In the beginning God created the heavens and the earth.",
         "Now the earth was formless and empty, darkness was over the surface of the deep, and the Spirit of God was hovering over the waters.",
         "And God said, \"Let there be light,\" and there was light.",
@@ -85,12 +91,17 @@ class VerseTableViewController: UITableViewController {
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
-
+        
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 40.0
         //tableView.tableFooterView = UIView(frame: CGRect.zero)
+        updateUI()
+    }
+    
+    func updateUI() {
+        title = "\(chapter!)장"
     }
 
     override func didReceiveMemoryWarning() {

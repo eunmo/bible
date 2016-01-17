@@ -9,6 +9,9 @@
 import UIKit
 
 class BookCollectionViewController: UICollectionViewController {
+    
+    // MARK: Properties
+    var bible: Bible?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,6 +23,7 @@ class BookCollectionViewController: UICollectionViewController {
         //self.collectionView!.registerClass(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
 
         // Do any additional setup after loading the view.
+        bible = Bible()
     }
 
     override func didReceiveMemoryWarning() {
@@ -54,7 +58,7 @@ class BookCollectionViewController: UICollectionViewController {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("BookCollectionViewCell", forIndexPath: indexPath) as! BookCollectionViewCell
     
         // Configure the cell
-        cell.label.text = "\(indexPath.row + 1)"
+        cell.label.text = bible!.getAbbr(indexPath)
     
         return cell
     }
@@ -118,7 +122,8 @@ class BookCollectionViewController: UICollectionViewController {
             case "Show Chapters":
                 if let vc = segue.destinationViewController as? ChapterCollectionViewController {
                     let indexPath = collectionView?.indexPathsForSelectedItems()![0]
-                    vc.text = "\(indexPath!.section == 0 ? "구약" : "신약") \(indexPath!.row + 1)"
+                    vc.bible = bible
+                    vc.book = bible?.getBook(indexPath!)
                 }
             default: break
             }

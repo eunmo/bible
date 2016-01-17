@@ -116,7 +116,7 @@
                                 </constraints>
                                 <connections>
                                     <outlet property="label" destination="AaD-Xr-ond" id="9mm-qq-zAh"/>
-                                    <segue destination="LQl-zs-YSe" kind="show" id="f4t-QH-zDR"/>
+                                    <segue destination="LQl-zs-YSe" kind="show" identifier="Show Verses" id="f4t-QH-zDR"/>
                                 </connections>
                             </collectionViewCell>
                         </cells>
