@@ -43,19 +43,19 @@ class BookCollectionViewController: UICollectionViewController {
 
     // MARK: UICollectionViewDataSource
 
-    override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+    override func numberOfSections(in collectionView: UICollectionView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 2
     }
 
 
-    override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
         return section == 0 ? 39 : 27
     }
 
-    override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("BookCollectionViewCell", forIndexPath: indexPath) as! BookCollectionViewCell
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "BookCollectionViewCell", for: indexPath) as! BookCollectionViewCell
     
         // Configure the cell
         cell.label.text = bible!.getAbbr(indexPath)
@@ -63,15 +63,15 @@ class BookCollectionViewController: UICollectionViewController {
         return cell
     }
     
-    override func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
+    override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         
         switch kind {
             
         case UICollectionElementKindSectionHeader:
             
-            let headerView = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "BookCollectionViewHeader", forIndexPath: indexPath) as! BookCollectionReusableView
+            let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "BookCollectionViewHeader", for: indexPath) as! BookCollectionReusableView
             
-            headerView.label.text = indexPath.section == 0 ? "구약" : "신약"
+            headerView.label.text = (indexPath as NSIndexPath).section == 0 ? "구약" : "신약"
             return headerView
             
         default:
@@ -114,14 +114,14 @@ class BookCollectionViewController: UICollectionViewController {
     // MARK: - Navigation
     
     // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
         if let identifier = segue.identifier {
             switch identifier {
             case "Show Chapters":
-                if let vc = segue.destinationViewController as? ChapterCollectionViewController {
-                    let indexPath = collectionView?.indexPathsForSelectedItems()![0]
+                if let vc = segue.destination as? ChapterCollectionViewController {
+                    let indexPath = collectionView?.indexPathsForSelectedItems![0]
                     vc.bible = bible
                     vc.book = bible?.getBook(indexPath!)
                 }

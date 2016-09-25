@@ -19,7 +19,7 @@ class VerseTableViewController: UITableViewController {
     var verses = [String] ()
     var subVerses = [String]()
     
-    var selectedIndex: NSIndexPath?
+    var selectedIndex: IndexPath?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,22 +52,22 @@ class VerseTableViewController: UITableViewController {
 
     // MARK: - Table view data source
 
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return verses.count
     }
 
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("VerseTableViewCell", forIndexPath: indexPath) as! VerseTableViewCell
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "VerseTableViewCell", for: indexPath) as! VerseTableViewCell
 
         // Configure the cell...
-        cell.indexLabel.text = "\(indexPath.row + 1)"
-        cell.verseLabel.text = verses[indexPath.row]
-        if selectedIndex?.row == indexPath.row {
-            cell.transLabel.text = subVerses[indexPath.row]
+        cell.indexLabel.text = "\((indexPath as NSIndexPath).row + 1)"
+        cell.verseLabel.text = verses[(indexPath as NSIndexPath).row]
+        if (selectedIndex as NSIndexPath?)?.row == (indexPath as NSIndexPath).row {
+            cell.transLabel.text = subVerses[(indexPath as NSIndexPath).row]
         } else {
             cell.transLabel.text = ""
         }
@@ -75,8 +75,8 @@ class VerseTableViewController: UITableViewController {
         return cell
     }
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        if selectedIndex?.row != indexPath.row {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if (selectedIndex as NSIndexPath?)?.row != (indexPath as NSIndexPath).row {
             selectedIndex = indexPath
         } else {
             selectedIndex = nil

@@ -41,22 +41,22 @@ class ChapterCollectionViewController: UICollectionViewController {
 
     // MARK: UICollectionViewDataSource
 
-    override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+    override func numberOfSections(in collectionView: UICollectionView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
 
-    override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
         return book!.chapters
     }
 
-    override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("ChapterCollectionViewCell", forIndexPath: indexPath) as! ChapterCollectionViewCell
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ChapterCollectionViewCell", for: indexPath) as! ChapterCollectionViewCell
     
         // Configure the cell
-        cell.label.text = "\(indexPath.row + 1)"
+        cell.label.text = "\((indexPath as NSIndexPath).row + 1)"
     
         return cell
     }
@@ -95,17 +95,17 @@ class ChapterCollectionViewController: UICollectionViewController {
     // MARK: - Navigation
     
     // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
         if let identifier = segue.identifier {
             switch identifier {
             case "Show Verses":
-                if let vc = segue.destinationViewController as? VerseTableViewController {
-                    let indexPath = collectionView?.indexPathsForSelectedItems()![0]
+                if let vc = segue.destination as? VerseTableViewController {
+                    let indexPath = collectionView?.indexPathsForSelectedItems![0]
                     vc.bible = bible
                     vc.book = book?.index
-                    vc.chapter = indexPath!.row + 1
+                    vc.chapter = (indexPath! as NSIndexPath).row + 1
                 }
             default: break
             }

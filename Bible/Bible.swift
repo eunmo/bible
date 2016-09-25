@@ -81,16 +81,16 @@ class Bible {
         books.append(Book(name: "유다서", abbr: "유", chapters: 1))
         books.append(Book(name: "요한계시록", abbr: "계", chapters: 22))
         
-        for (index, book) in books.enumerate() {
+        for (index, book) in books.enumerated() {
             book.index = index
         }
     }
     
-    func indexPathToIndex(indexPath: NSIndexPath) -> Int {
-        return indexPath.section == 0 ? indexPath.row : indexPath.row + 39
+    func indexPathToIndex(_ indexPath: IndexPath) -> Int {
+        return (indexPath as NSIndexPath).section == 0 ? (indexPath as NSIndexPath).row : (indexPath as NSIndexPath).row + 39
     }
     
-    func getAbbr(indexPath: NSIndexPath) -> String {
+    func getAbbr(_ indexPath: IndexPath) -> String {
         let index = indexPathToIndex(indexPath)
         var abbr = ""
         if index < books.count {
@@ -99,30 +99,30 @@ class Bible {
         return abbr
     }
     
-    func getBook(indexPath: NSIndexPath) -> Book {
+    func getBook(_ indexPath: IndexPath) -> Book {
         let index = indexPathToIndex(indexPath)
         return books[index]
     }
     
-    func getVerses(book: Int, chapter: Int) -> [String] {
-        if let path = NSBundle.mainBundle().pathForResource("data/K.\(book + 1).\(chapter)", ofType: ""), data = NSData(contentsOfFile: path) {
+    func getVerses(_ book: Int, chapter: Int) -> [String] {
+        if let path = Bundle.main.path(forResource: "data/K.\(book + 1).\(chapter)", ofType: ""), let data = try? Data(contentsOf: URL(fileURLWithPath: path)) {
             return dataToArray(data)
         }
         
         return [String]()
     }
     
-    func getSubVerses(book: Int, chapter: Int) -> [String] {
-        if let path = NSBundle.mainBundle().pathForResource("data/E.\(book + 1).\(chapter)", ofType: ""), data = NSData(contentsOfFile: path) {
+    func getSubVerses(_ book: Int, chapter: Int) -> [String] {
+        if let path = Bundle.main.path(forResource: "data/E.\(book + 1).\(chapter)", ofType: ""), let data = try? Data(contentsOf: URL(fileURLWithPath: path)) {
             return dataToArray(data)
         }
         
         return [String]()
     }
     
-    func dataToArray(data: NSData) -> [String] {
+    func dataToArray(_ data: Data) -> [String] {
         var verses = [String]()
-        if let jsonData = try! NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments) as? NSArray {
+        if let jsonData = try! JSONSerialization.jsonObject(with: data, options: .allowFragments) as? NSArray {
             for verse in jsonData as! [String] {
                 verses.append(verse)
             }
