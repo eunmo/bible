@@ -102,6 +102,7 @@ class Bible {
         
         languages.append(Language(name: "NIV", abbr: "E"))
         languages.append(Language(name: "개역개정", abbr: "K"))
+        languages.append(Language(name: "우리말성경", abbr: "U"))
         languages.append(Language(name: "新改訳", abbr: "J"))
         
         selectedIndexes = [1, 0]
