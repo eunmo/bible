@@ -21,6 +21,8 @@ class VerseTableViewController: UITableViewController {
     
     var selectedIndex: IndexPath?
 
+    @IBOutlet weak var languageButton: UIBarButtonItem!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -29,6 +31,8 @@ class VerseTableViewController: UITableViewController {
         
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        NotificationCenter.default.addObserver(self, selector: #selector(VerseTableViewController.receiveNotification), name: NSNotification.Name(rawValue: Bible.notificationKey), object: nil)
+        
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 40.0
         tableView.tableFooterView = UIView(frame: CGRect.zero)
@@ -37,12 +41,24 @@ class VerseTableViewController: UITableViewController {
     }
     
     func load() {
-        verses = (bible?.getVerses(book!, chapter: chapter!))!
-        subVerses = (bible?.getSubVerses(book!, chapter: chapter!))!
+        verses = bible!.getVerses(book!, chapter: chapter!)
+        subVerses = bible!.getSubVerses(book!, chapter: chapter!)
+        languageButton.title = bible!.getLanguage()
     }
     
     func updateUI() {
         title = "\(chapter!)장"
+    }
+    
+    func update() {
+        load()
+        tableView.reloadData()
+    }
+    
+    @objc func receiveNotification() {
+        DispatchQueue.main.async(execute: { () -> Void in
+            self.update()
+        })
     }
 
     override func didReceiveMemoryWarning() {
@@ -119,14 +135,22 @@ class VerseTableViewController: UITableViewController {
     }
     */
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        if let identifier = segue.identifier {
+            switch identifier {
+            case "Select Language":
+                if let vc = segue.destination as? LanguageTableViewController {
+                    vc.bible = bible
+                }
+            default: break
+            }
+        }
     }
-    */
 
 }

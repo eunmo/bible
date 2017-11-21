@@ -10,7 +10,20 @@ import Foundation
 
 class Bible {
     
+    // MARK: Properties
+    
     var books: [Book]
+    var languages: [Language]
+    var selectedIndexes: [Int]
+    
+    // MARK: Archiving Paths
+    
+    static let DocumentsDirectory = FileManager().urls(for: .documentDirectory, in: .userDomainMask).first!
+    static let ArchiveURL = DocumentsDirectory.appendingPathComponent("languages")
+    
+    // MARK: Notification Key
+    
+    static let notificationKey = "netShuffleNotificationKey"
     
     init() {
         books = [Book]()
@@ -84,6 +97,15 @@ class Bible {
         for (index, book) in books.enumerated() {
             book.index = index
         }
+        
+        languages = [Language]()
+        
+        languages.append(Language(name: "NIV", abbr: "E"))
+        languages.append(Language(name: "개역개정", abbr: "K"))
+        languages.append(Language(name: "新改訳", abbr: "J"))
+        
+        selectedIndexes = [1, 0]
+        load()
     }
     
     func indexPathToIndex(_ indexPath: IndexPath) -> Int {
@@ -104,20 +126,35 @@ class Bible {
         return books[index]
     }
     
-    func getVerses(_ book: Int, chapter: Int) -> [String] {
-        if let path = Bundle.main.path(forResource: "data/K.\(book + 1).\(chapter)", ofType: ""), let data = try? Data(contentsOf: URL(fileURLWithPath: path)) {
+    func getVersesInternal(index: Int, book: Int, chapter: Int) -> [String] {
+        let file = "data/\(languages[selectedIndexes[index]].abbr).\(book + 1).\(chapter)"
+        if let path = Bundle.main.path(forResource: file, ofType: ""), let data = try? Data(contentsOf: URL(fileURLWithPath: path)) {
             return dataToArray(data)
         }
         
         return [String]()
+        
+    }
+    
+    func getVerses(_ book: Int, chapter: Int) -> [String] {
+        return getVersesInternal(index: 0, book: book, chapter: chapter)
     }
     
     func getSubVerses(_ book: Int, chapter: Int) -> [String] {
-        if let path = Bundle.main.path(forResource: "data/E.\(book + 1).\(chapter)", ofType: ""), let data = try? Data(contentsOf: URL(fileURLWithPath: path)) {
-            return dataToArray(data)
-        }
-        
-        return [String]()
+        return getVersesInternal(index: 1, book: book, chapter: chapter)
+    }
+    
+    func getLanguage() -> String {
+        return languages[selectedIndexes[0]].name
+    }
+    
+    func isSelected(path: IndexPath) -> Bool {
+        return selectedIndexes[path.section] == path.row
+    }
+    
+    func changeLanguage(path: IndexPath) {
+        selectedIndexes[path.section] = path.row
+        save()
     }
     
     func dataToArray(_ data: Data) -> [String] {
@@ -128,5 +165,20 @@ class Bible {
             }
         }
         return verses
+    }
+    
+    // MARK: NSCoding
+    
+    func save() {
+        NSKeyedArchiver.archiveRootObject(selectedIndexes, toFile: Bible.ArchiveURL.path)
+        NotificationCenter.default.post(name: Notification.Name(rawValue: Bible.notificationKey), object: self)
+    }
+    
+    func load() {
+        let savedIndexes = NSKeyedUnarchiver.unarchiveObject(withFile: Bible.ArchiveURL.path) as? [Int]
+        
+        if savedIndexes != nil {
+            selectedIndexes = savedIndexes!
+        }
     }
 }
