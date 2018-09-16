@@ -100,10 +100,13 @@ class Bible {
         
         languages = [Language]()
         
-        languages.append(Language(name: "NIV", abbr: "E"))
         languages.append(Language(name: "개역개정", abbr: "K"))
-        languages.append(Language(name: "우리말성경", abbr: "U"))
-        languages.append(Language(name: "新改訳", abbr: "J"))
+        languages.append(Language(name: "우리말성경", abbr: "K2"))
+        languages.append(Language(name: "쉬운성경", abbr: "K3"))
+        languages.append(Language(name: "NIV", abbr: "E"))
+        languages.append(Language(name: "新共同訳", abbr: "J"))
+        languages.append(Language(name: "Louis Segond", abbr: "F"))
+        
         
         selectedIndexes = [1, 0]
         load()
@@ -181,5 +184,19 @@ class Bible {
         if savedIndexes != nil {
             selectedIndexes = savedIndexes!
         }
+        
+        /* for debugging
+        for i in 0..<languages.count {
+            for (j, book) in books.enumerated() {
+                for k in 1...book.chapters {
+                    let file = "data/\(languages[i].abbr).\(j + 1).\(k)"
+                    print(file)
+                    let path = Bundle.main.path(forResource: file, ofType: "")
+                    let data = try! Data(contentsOf: URL(fileURLWithPath: path!))
+                    let jsonData = try! JSONSerialization.jsonObject(with: data, options: .allowFragments) as? NSArray
+                }
+            }
+        }
+ */
     }
 }

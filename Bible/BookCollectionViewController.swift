@@ -78,6 +78,7 @@ class BookCollectionViewController: UICollectionViewController {
             
             assert(false, "Unexpected element kind")
         }
+        return UICollectionReusableView()
     }
 
     // MARK: UICollectionViewDelegate
