@@ -100,12 +100,13 @@ class Bible {
         
         languages = [Language]()
         
-        languages.append(Language(name: "개역개정", abbr: "K"))
-        languages.append(Language(name: "우리말성경", abbr: "K2"))
-        languages.append(Language(name: "쉬운성경", abbr: "K3"))
-        languages.append(Language(name: "NIV", abbr: "E"))
-        languages.append(Language(name: "新共同訳", abbr: "J"))
-        languages.append(Language(name: "Louis Segond", abbr: "F"))
+        languages.append(Language(name: "🇰🇷 개역개정", abbr: "K"))
+        languages.append(Language(name: "🇰🇷 우리말성경", abbr: "K2"))
+        languages.append(Language(name: "🇰🇷 쉬운성경", abbr: "K3"))
+        languages.append(Language(name: "🇬🇧 NIV", abbr: "E"))
+        languages.append(Language(name: "🇯🇵 新共同訳", abbr: "J"))
+        languages.append(Language(name: "🇫🇷 Louis Segond", abbr: "F"))
+        languages.append(Language(name: "🇪🇸 NVI", abbr: "S"))
         
         
         selectedIndexes = [1, 0]
