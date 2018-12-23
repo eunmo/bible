@@ -40,6 +40,10 @@ class VerseTableViewController: UITableViewController {
         updateUI()
     }
     
+    override func prefersHomeIndicatorAutoHidden() -> Bool {
+        return true
+    }
+    
     func load() {
         verses = bible!.getVerses(book!, chapter: chapter!)
         subVerses = bible!.getSubVerses(book!, chapter: chapter!)
