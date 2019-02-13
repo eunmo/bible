@@ -104,7 +104,7 @@ class Bible {
         languages.append(Language(name: "🇰🇷 우리말성경", abbr: "K2"))
         languages.append(Language(name: "🇰🇷 쉬운성경", abbr: "K3"))
         languages.append(Language(name: "🇬🇧 NIV", abbr: "E"))
-        languages.append(Language(name: "🇯🇵 新共同訳", abbr: "J"))
+        languages.append(Language(name: "🇯🇵 新改訳2017", abbr: "J"))
         languages.append(Language(name: "🇫🇷 Louis Segond", abbr: "F"))
         languages.append(Language(name: "🇪🇸 NVI", abbr: "S"))
         
