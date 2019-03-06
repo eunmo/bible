@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0A1753752230181400E639BB /* LanguageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1753732230181400E639BB /* LanguageTableViewCell.swift */; };
+		0A1753762230181400E639BB /* LanguageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A1753742230181400E639BB /* LanguageTableViewCell.xib */; };
 		543496411FC47ECE007CFF98 /* LanguageTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 543496401FC47ECE007CFF98 /* LanguageTableViewController.swift */; };
 		543496451FC48BC9007CFF98 /* Language.swift in Sources */ = {isa = PBXBuildFile; fileRef = 543496441FC48BC9007CFF98 /* Language.swift */; };
 		546B88BA1C4A160900B1FC20 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 546B88B91C4A160900B1FC20 /* AppDelegate.swift */; };
@@ -26,6 +28,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0A1753732230181400E639BB /* LanguageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageTableViewCell.swift; sourceTree = "<group>"; };
+		0A1753742230181400E639BB /* LanguageTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LanguageTableViewCell.xib; sourceTree = "<group>"; };
 		543496401FC47ECE007CFF98 /* LanguageTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageTableViewController.swift; sourceTree = "<group>"; };
 		543496441FC48BC9007CFF98 /* Language.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Language.swift; sourceTree = "<group>"; };
 		546B88B61C4A160900B1FC20 /* Bible.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bible.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -79,6 +83,8 @@
 			children = (
 				546B88B91C4A160900B1FC20 /* AppDelegate.swift */,
 				546B88BD1C4A160900B1FC20 /* Main.storyboard */,
+				0A1753732230181400E639BB /* LanguageTableViewCell.swift */,
+				0A1753742230181400E639BB /* LanguageTableViewCell.xib */,
 				543496401FC47ECE007CFF98 /* LanguageTableViewController.swift */,
 				543496441FC48BC9007CFF98 /* Language.swift */,
 				546B88D51C4A5F9E00B1FC20 /* BookCollectionViewController.swift */,
@@ -160,6 +166,7 @@
 				546B88C41C4A160900B1FC20 /* LaunchScreen.storyboard in Resources */,
 				546B88C11C4A160900B1FC20 /* Assets.xcassets in Resources */,
 				546B88E31C4BC4B000B1FC20 /* data in Resources */,
+				0A1753762230181400E639BB /* LanguageTableViewCell.xib in Resources */,
 				546B88BF1C4A160900B1FC20 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -177,6 +184,7 @@
 				543496411FC47ECE007CFF98 /* LanguageTableViewController.swift in Sources */,
 				546B88D01C4A207B00B1FC20 /* BookCollectionReusableView.swift in Sources */,
 				546B88DA1C4A60A900B1FC20 /* VerseTableViewCell.swift in Sources */,
+				0A1753752230181400E639BB /* LanguageTableViewCell.swift in Sources */,
 				546B88CE1C4A1AD900B1FC20 /* BookCollectionViewCell.swift in Sources */,
 				546B88BA1C4A160900B1FC20 /* AppDelegate.swift in Sources */,
 				546B88D61C4A5F9E00B1FC20 /* BookCollectionViewController.swift in Sources */,

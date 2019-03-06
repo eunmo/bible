@@ -103,8 +103,9 @@ class Bible {
         languages.append(Language(name: "🇰🇷 개역개정", abbr: "K"))
         languages.append(Language(name: "🇰🇷 우리말성경", abbr: "K2"))
         languages.append(Language(name: "🇰🇷 쉬운성경", abbr: "K3"))
-        languages.append(Language(name: "🇬🇧 NIV", abbr: "E"))
+        languages.append(Language(name: "🇺🇸 NIV", abbr: "E"))
         languages.append(Language(name: "🇯🇵 新改訳2017", abbr: "J"))
+        languages.append(Language(name: "🇯🇵 新改訳第3版", abbr: "J3"))
         languages.append(Language(name: "🇫🇷 Louis Segond", abbr: "F"))
         languages.append(Language(name: "🇪🇸 NVI", abbr: "S"))
         
@@ -153,12 +154,12 @@ class Bible {
         return languages[selectedIndexes[0]].name
     }
     
-    func isSelected(path: IndexPath) -> Bool {
-        return selectedIndexes[path.section] == path.row
+    func isSelected(section: Int, index: Int) -> Bool {
+        return selectedIndexes[section] == index
     }
     
-    func changeLanguage(path: IndexPath) {
-        selectedIndexes[path.section] = path.row
+    func changeLanguage(section: Int, index: Int) {
+        selectedIndexes[section] = index
         save()
     }
     

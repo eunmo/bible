@@ -22,6 +22,7 @@ class LanguageTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        self.tableView.register(LanguageTableViewCell.nib, forCellReuseIdentifier: LanguageTableViewCell.identifier)
         
         NotificationCenter.default.addObserver(self, selector: #selector(LanguageTableViewController.receiveNotification), name: NSNotification.Name(rawValue: Bible.notificationKey), object: nil)
     }
@@ -38,39 +39,23 @@ class LanguageTableViewController: UITableViewController {
 
     // MARK: - Table view data source
 
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 2
-    }
-
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         return bible!.languages.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "LanguageTableViewCell", for: indexPath)
-
+        let cell = tableView.dequeueReusableCell(withIdentifier: LanguageTableViewCell.identifier, for: indexPath)
+        
         // Configure the cell...
         let row = indexPath.row
         let language = bible!.languages[row]
-        cell.textLabel?.text = language.name
-        
-        if (bible!.isSelected(path: indexPath)) {
-            cell.accessoryType = .checkmark
-        } else {
-            cell.accessoryType = .none
+        if let cell = cell as? LanguageTableViewCell {
+            cell.bible = bible
+            cell.index = indexPath.row
         }
  
         return cell
-    }
-    
-    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String {
-        return section == 0 ? "주언어" : "부언어"
-    }
-    
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        bible!.changeLanguage(path: indexPath)
     }
 
     /*
