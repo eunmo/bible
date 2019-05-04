@@ -150,8 +150,12 @@ class Bible {
         return getVersesInternal(index: 1, book: book, chapter: chapter)
     }
     
-    func getLanguage() -> String {
+    func getMainLanguage() -> String {
         return languages[selectedIndexes[0]].name
+    }
+    
+    func getSubLanguage() -> String {
+        return languages[selectedIndexes[1]].name
     }
     
     func isSelected(section: Int, index: Int) -> Bool {

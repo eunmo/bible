@@ -31,6 +31,9 @@ class VerseTableViewController: UITableViewController {
         
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        self.tableView.register(VersePortraitTableViewCell.nib, forCellReuseIdentifier: VersePortraitTableViewCell.identifier)
+        self.tableView.register(VerseLandscapeTableViewCell.nib, forCellReuseIdentifier: VerseLandscapeTableViewCell.identifier)
+        
         NotificationCenter.default.addObserver(self, selector: #selector(VerseTableViewController.receiveNotification), name: NSNotification.Name(rawValue: Bible.notificationKey), object: nil)
         
         tableView.rowHeight = UITableViewAutomaticDimension
@@ -47,7 +50,22 @@ class VerseTableViewController: UITableViewController {
     func load() {
         verses = bible!.getVerses(book!, chapter: chapter!)
         subVerses = bible!.getSubVerses(book!, chapter: chapter!)
-        languageButton.title = bible!.getLanguage()
+        
+        let lang = bible!.getMainLanguage()
+        let fullLang = "\(lang)/\(bible!.getSubLanguage())"
+        
+        switch UIApplication.shared.statusBarOrientation {
+        case .landscapeLeft:
+            languageButton.title = fullLang
+        case .landscapeRight:
+            languageButton.title = fullLang
+        case .portrait:
+            languageButton.title = lang
+        case .portraitUpsideDown:
+            languageButton.title = lang
+        case .unknown:
+            languageButton.title = lang
+        }
     }
     
     func updateUI() {
@@ -79,20 +97,50 @@ class VerseTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return verses.count
     }
+    
+    func getPortraitCell(_ indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: VersePortraitTableViewCell.identifier, for: indexPath)
+        
+        if let cell = cell as? VersePortraitTableViewCell {
+            cell.indexLabel.text = "\((indexPath as NSIndexPath).row + 1)"
+            cell.verseLabel.text = verses[(indexPath as NSIndexPath).row]
+            if (selectedIndex as NSIndexPath?)?.row == (indexPath as NSIndexPath).row {
+                cell.transLabel.text = subVerses[(indexPath as NSIndexPath).row]
+            } else {
+                cell.transLabel.text = ""
+            }
+        }
+        
+        return cell
+    }
+    
+    func getLandscapeCell(_ indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: VerseLandscapeTableViewCell.identifier, for: indexPath)
+        
+        if let cell = cell as? VerseLandscapeTableViewCell {
+            cell.indexLabel.text = "\((indexPath as NSIndexPath).row + 1)"
+            cell.verseLabel.text = verses[(indexPath as NSIndexPath).row]
+            cell.transLabel.text = subVerses[(indexPath as NSIndexPath).row]
+            cell.verseRealLabel.text = verses[(indexPath as NSIndexPath).row]
+            cell.transRealLabel.text = subVerses[(indexPath as NSIndexPath).row]
+        }
+        
+        return cell
+    }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "VerseTableViewCell", for: indexPath) as! VerseTableViewCell
-
-        // Configure the cell...
-        cell.indexLabel.text = "\((indexPath as NSIndexPath).row + 1)"
-        cell.verseLabel.text = verses[(indexPath as NSIndexPath).row]
-        if (selectedIndex as NSIndexPath?)?.row == (indexPath as NSIndexPath).row {
-            cell.transLabel.text = subVerses[(indexPath as NSIndexPath).row]
-        } else {
-            cell.transLabel.text = ""
+        switch UIApplication.shared.statusBarOrientation {
+        case .landscapeLeft:
+            return getLandscapeCell(indexPath)
+        case .landscapeRight:
+            return getLandscapeCell(indexPath)
+        case .portrait:
+            return getPortraitCell(indexPath)
+        case .portraitUpsideDown:
+            return getPortraitCell(indexPath)
+        case .unknown:
+            return UITableViewCell()
         }
-
-        return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -102,6 +150,12 @@ class VerseTableViewController: UITableViewController {
             selectedIndex = nil
         }
         tableView.reloadData()
+    }
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        DispatchQueue.main.async(execute: { () -> Void in
+            self.update()
+        })
     }
 
     /*
