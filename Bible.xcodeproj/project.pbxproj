@@ -21,7 +21,6 @@
 		546B88D41C4A258D00B1FC20 /* ChapterCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 546B88D31C4A258D00B1FC20 /* ChapterCollectionViewCell.swift */; };
 		546B88D61C4A5F9E00B1FC20 /* BookCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 546B88D51C4A5F9E00B1FC20 /* BookCollectionViewController.swift */; };
 		546B88D81C4A5FF900B1FC20 /* VerseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 546B88D71C4A5FF900B1FC20 /* VerseTableViewController.swift */; };
-		546B88DA1C4A60A900B1FC20 /* VerseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 546B88D91C4A60A900B1FC20 /* VerseTableViewCell.swift */; };
 		546B88DC1C4BB65800B1FC20 /* Bible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 546B88DB1C4BB65800B1FC20 /* Bible.swift */; };
 		546B88DE1C4BB68200B1FC20 /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = 546B88DD1C4BB68200B1FC20 /* Book.swift */; };
 		546B88E31C4BC4B000B1FC20 /* data in Resources */ = {isa = PBXBuildFile; fileRef = 546B88E21C4BC4B000B1FC20 /* data */; };
@@ -48,7 +47,6 @@
 		546B88D31C4A258D00B1FC20 /* ChapterCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChapterCollectionViewCell.swift; sourceTree = "<group>"; };
 		546B88D51C4A5F9E00B1FC20 /* BookCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookCollectionViewController.swift; sourceTree = "<group>"; };
 		546B88D71C4A5FF900B1FC20 /* VerseTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerseTableViewController.swift; sourceTree = "<group>"; };
-		546B88D91C4A60A900B1FC20 /* VerseTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerseTableViewCell.swift; sourceTree = "<group>"; };
 		546B88DB1C4BB65800B1FC20 /* Bible.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bible.swift; sourceTree = "<group>"; };
 		546B88DD1C4BB68200B1FC20 /* Book.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
 		546B88E21C4BC4B000B1FC20 /* data */ = {isa = PBXFileReference; lastKnownFileType = folder; name = data; path = Bible/data; sourceTree = "<group>"; };
@@ -101,7 +99,6 @@
 				546B88D11C4A24F400B1FC20 /* ChapterCollectionViewController.swift */,
 				546B88D31C4A258D00B1FC20 /* ChapterCollectionViewCell.swift */,
 				546B88D71C4A5FF900B1FC20 /* VerseTableViewController.swift */,
-				546B88D91C4A60A900B1FC20 /* VerseTableViewCell.swift */,
 				549E87C3227DE50B004F9A78 /* VersePortraitTableViewCell.swift */,
 				549E87C4227DE50B004F9A78 /* VersePortraitTableViewCell.xib */,
 				549E87C7227DEDEA004F9A78 /* VerseLandscapeTableViewCell.swift */,
@@ -199,7 +196,6 @@
 				543496411FC47ECE007CFF98 /* LanguageTableViewController.swift in Sources */,
 				546B88D01C4A207B00B1FC20 /* BookCollectionReusableView.swift in Sources */,
 				549E87C9227DEDEA004F9A78 /* VerseLandscapeTableViewCell.swift in Sources */,
-				546B88DA1C4A60A900B1FC20 /* VerseTableViewCell.swift in Sources */,
 				0A1753752230181400E639BB /* LanguageTableViewCell.swift in Sources */,
 				546B88CE1C4A1AD900B1FC20 /* BookCollectionViewCell.swift in Sources */,
 				549E87C5227DE50B004F9A78 /* VersePortraitTableViewCell.swift in Sources */,

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="UYj-vs-ZeO">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="UYj-vs-ZeO">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -140,62 +140,22 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="VerseTableViewCell" id="kpi-7b-8Hh" customClass="VerseTableViewCell" customModule="Bible" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="lVZ-NR-Yc5" style="IBUITableViewCellStyleDefault" id="kpi-7b-8Hh">
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="kpi-7b-8Hh" id="1h2-ZB-pDH">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="40" translatesAutoresizingMaskIntoConstraints="NO" id="2SW-sI-Jsj">
-                                            <rect key="frame" x="8" y="8" width="30" height="18"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="30" id="QCH-8W-JwM"/>
-                                            </constraints>
-                                            <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Label" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S1G-Mv-7U8">
-                                            <rect key="frame" x="46" y="8" width="546" height="20"/>
-                                            <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Label" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sKW-NH-EHv">
-                                            <rect key="frame" x="46" y="28" width="546" height="7"/>
-                                            <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                            <color key="textColor" name="selectedMenuItemColor" catalog="System" colorSpace="catalog"/>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="lVZ-NR-Yc5">
+                                            <rect key="frame" x="16" y="0.0" width="343" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
-                                    <constraints>
-                                        <constraint firstItem="S1G-Mv-7U8" firstAttribute="bottom" secondItem="1h2-ZB-pDH" secondAttribute="bottomMargin" id="2Tf-Iu-3t2"/>
-                                        <constraint firstAttribute="bottomMargin" secondItem="sKW-NH-EHv" secondAttribute="bottom" id="8FE-8t-kdJ"/>
-                                        <constraint firstAttribute="bottomMargin" secondItem="S1G-Mv-7U8" secondAttribute="bottom" id="B9V-Tg-eWI"/>
-                                        <constraint firstItem="S1G-Mv-7U8" firstAttribute="leading" secondItem="2SW-sI-Jsj" secondAttribute="trailing" constant="8" id="FqE-bg-JHT"/>
-                                        <constraint firstAttribute="bottom" secondItem="S1G-Mv-7U8" secondAttribute="bottom" id="H9N-le-mnc"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="sKW-NH-EHv" secondAttribute="trailing" id="Qbp-Gf-qDI"/>
-                                        <constraint firstItem="sKW-NH-EHv" firstAttribute="leading" secondItem="S1G-Mv-7U8" secondAttribute="leading" id="Vbr-Nr-3g4"/>
-                                        <constraint firstItem="2SW-sI-Jsj" firstAttribute="leading" secondItem="1h2-ZB-pDH" secondAttribute="leadingMargin" id="YyE-2m-mlV"/>
-                                        <constraint firstItem="2SW-sI-Jsj" firstAttribute="top" secondItem="1h2-ZB-pDH" secondAttribute="topMargin" id="eRp-8Y-RKx"/>
-                                        <constraint firstItem="sKW-NH-EHv" firstAttribute="top" secondItem="S1G-Mv-7U8" secondAttribute="bottom" id="rxM-N4-2jR"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="S1G-Mv-7U8" secondAttribute="trailing" id="uWS-Ja-goW"/>
-                                        <constraint firstItem="S1G-Mv-7U8" firstAttribute="top" secondItem="1h2-ZB-pDH" secondAttribute="topMargin" id="zcn-PH-ZD4"/>
-                                    </constraints>
-                                    <variation key="default">
-                                        <mask key="constraints">
-                                            <exclude reference="2Tf-Iu-3t2"/>
-                                            <exclude reference="B9V-Tg-eWI"/>
-                                            <exclude reference="H9N-le-mnc"/>
-                                        </mask>
-                                    </variation>
                                 </tableViewCellContentView>
-                                <connections>
-                                    <outlet property="indexLabel" destination="2SW-sI-Jsj" id="9rW-xT-8k5"/>
-                                    <outlet property="transLabel" destination="sKW-NH-EHv" id="gQC-P0-pBu"/>
-                                    <outlet property="verseLabel" destination="S1G-Mv-7U8" id="nOZ-nG-ETy"/>
-                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>

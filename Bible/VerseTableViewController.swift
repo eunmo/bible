@@ -52,18 +52,10 @@ class VerseTableViewController: UITableViewController {
         subVerses = bible!.getSubVerses(book!, chapter: chapter!)
         
         let lang = bible!.getMainLanguage()
-        let fullLang = "\(lang)/\(bible!.getSubLanguage())"
         
-        switch UIApplication.shared.statusBarOrientation {
-        case .landscapeLeft:
-            languageButton.title = fullLang
-        case .landscapeRight:
-            languageButton.title = fullLang
-        case .portrait:
-            languageButton.title = lang
-        case .portraitUpsideDown:
-            languageButton.title = lang
-        case .unknown:
+        if (UIApplication.shared.statusBarOrientation.isLandscape) {
+            languageButton.title = "\(lang)/\(bible!.getSubLanguage())"
+        } else {
             languageButton.title = lang
         }
     }
@@ -129,21 +121,19 @@ class VerseTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        switch UIApplication.shared.statusBarOrientation {
-        case .landscapeLeft:
+        if (UIApplication.shared.statusBarOrientation.isLandscape) {
             return getLandscapeCell(indexPath)
-        case .landscapeRight:
-            return getLandscapeCell(indexPath)
-        case .portrait:
+        } else {
             return getPortraitCell(indexPath)
-        case .portraitUpsideDown:
-            return getPortraitCell(indexPath)
-        case .unknown:
-            return UITableViewCell()
         }
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if (UIApplication.shared.statusBarOrientation.isLandscape) {
+            tableView.deselectRow(at: indexPath, animated: false)
+            return
+        }
+        
         if (selectedIndex as NSIndexPath?)?.row != (indexPath as NSIndexPath).row {
             selectedIndex = indexPath
         } else {

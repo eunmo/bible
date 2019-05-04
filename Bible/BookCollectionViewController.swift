@@ -24,6 +24,10 @@ class BookCollectionViewController: UICollectionViewController {
 
         // Do any additional setup after loading the view.
         bible = Bible()
+        
+        if #available(iOS 11.0, *) {
+            collectionView?.contentInsetAdjustmentBehavior = .always
+        }
     }
 
     override func didReceiveMemoryWarning() {

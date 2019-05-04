@@ -23,6 +23,10 @@ class ChapterCollectionViewController: UICollectionViewController {
 
         // Do any additional setup after loading the view.
         updateUI()
+        
+        if #available(iOS 11.0, *) {
+            collectionView?.contentInsetAdjustmentBehavior = .always
+        }
     }
     
     func updateUI() {
