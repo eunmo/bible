@@ -33,6 +33,7 @@ class VerseTableViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         self.tableView.register(VersePortraitTableViewCell.nib, forCellReuseIdentifier: VersePortraitTableViewCell.identifier)
         self.tableView.register(VerseLandscapeTableViewCell.nib, forCellReuseIdentifier: VerseLandscapeTableViewCell.identifier)
+        self.tableView.register(MarkReadTableViewCell.nib, forCellReuseIdentifier: MarkReadTableViewCell.identifier)
         
         NotificationCenter.default.addObserver(self, selector: #selector(VerseTableViewController.receiveNotification), name: NSNotification.Name(rawValue: Bible.notificationKey), object: nil)
         
@@ -87,7 +88,7 @@ class VerseTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return verses.count
+        return verses.count + 1
     }
     
     func getPortraitCell(_ indexPath: IndexPath) -> UITableViewCell {
@@ -121,6 +122,14 @@ class VerseTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if (indexPath.row == verses.count) {
+            let cell = tableView.dequeueReusableCell(withIdentifier: MarkReadTableViewCell.identifier, for: indexPath)
+            if let cell = cell as? MarkReadTableViewCell {
+                cell.chapter = Chapter(bible: bible!, book: book!, chapter: chapter!)
+            }
+            return cell
+        }
+        
         if (UIApplication.shared.statusBarOrientation.isLandscape) {
             return getLandscapeCell(indexPath)
         } else {
@@ -147,42 +156,6 @@ class VerseTableViewController: UITableViewController {
             self.update()
         })
     }
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
-            // Delete the row from the data source
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        } else if editingStyle == .Insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
     
     // MARK: - Navigation
 

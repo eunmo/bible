@@ -15,15 +15,17 @@ class Bible {
     var books: [Book]
     var languages: [Language]
     var selectedIndexes: [Int]
+    var readMarks = [Int: Date]()
     
     // MARK: Archiving Paths
     
     static let DocumentsDirectory = FileManager().urls(for: .documentDirectory, in: .userDomainMask).first!
-    static let ArchiveURL = DocumentsDirectory.appendingPathComponent("languages")
+    static let ArchiveURLLang = DocumentsDirectory.appendingPathComponent("languages")
+    static let ArchiveURLRead = DocumentsDirectory.appendingPathComponent("readMarks")
     
     // MARK: Notification Key
     
-    static let notificationKey = "netShuffleNotificationKey"
+    static let notificationKey = "notificationKey"
     
     init() {
         books = [Book]()
@@ -180,15 +182,18 @@ class Bible {
     // MARK: NSCoding
     
     func save() {
-        NSKeyedArchiver.archiveRootObject(selectedIndexes, toFile: Bible.ArchiveURL.path)
+        NSKeyedArchiver.archiveRootObject(selectedIndexes, toFile: Bible.ArchiveURLLang.path)
+        NSKeyedArchiver.archiveRootObject(readMarks, toFile: Bible.ArchiveURLRead.path)
         NotificationCenter.default.post(name: Notification.Name(rawValue: Bible.notificationKey), object: self)
     }
     
     func load() {
-        let savedIndexes = NSKeyedUnarchiver.unarchiveObject(withFile: Bible.ArchiveURL.path) as? [Int]
+        if let savedIndexes = NSKeyedUnarchiver.unarchiveObject(withFile: Bible.ArchiveURLLang.path) as? [Int] {
+            selectedIndexes = savedIndexes
+        }
         
-        if savedIndexes != nil {
-            selectedIndexes = savedIndexes!
+        if let savedReadMarks = NSKeyedUnarchiver.unarchiveObject(withFile: Bible.ArchiveURLRead.path) as? [Int: Date] {
+            readMarks = savedReadMarks
         }
         
         /* for debugging
@@ -204,5 +209,50 @@ class Bible {
             }
         }
  */
+    }
+    
+    func getChapterIndex(book: Int, chapter: Int) -> Int {
+        var index = 0;
+        
+        for i in 0..<books.count {
+            if i < book {
+                index += books[i].chapters
+            } else {
+                return index + chapter - 1;
+            }
+        }
+        
+        return index
+    }
+    
+    func toggleChapter(_ chapter: Chapter) {
+        let key = chapter.index
+        
+        if readMarks[key] == nil {
+            readMarks[key] = Date()
+        } else {
+            readMarks.removeValue(forKey: key)
+        }
+        
+        save()
+    }
+    
+    func isChapterMarkedRead(_ index: Int) -> Bool {
+        return readMarks[index] != nil
+    }
+    
+    func getChaptersRead(in indexPath: IndexPath) -> (Int, Int) {
+        let index = indexPathToIndex(indexPath)
+        let offset = getChapterIndex(book: index, chapter: 1)
+        let book = books[index]
+        var count = 0
+        
+        for i in offset..<offset + book.chapters {
+            if isChapterMarkedRead(i) {
+                count += 1
+            }
+        }
+        
+        return (count, book.chapters)
     }
 }

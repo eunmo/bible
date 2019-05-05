@@ -28,6 +28,9 @@
 		549E87C6227DE50B004F9A78 /* VersePortraitTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 549E87C4227DE50B004F9A78 /* VersePortraitTableViewCell.xib */; };
 		549E87C9227DEDEA004F9A78 /* VerseLandscapeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 549E87C7227DEDEA004F9A78 /* VerseLandscapeTableViewCell.swift */; };
 		549E87CA227DEDEA004F9A78 /* VerseLandscapeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 549E87C8227DEDEA004F9A78 /* VerseLandscapeTableViewCell.xib */; };
+		549E87CD227F0E0B004F9A78 /* MarkReadTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 549E87CB227F0E0B004F9A78 /* MarkReadTableViewCell.swift */; };
+		549E87CE227F0E0B004F9A78 /* MarkReadTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 549E87CC227F0E0B004F9A78 /* MarkReadTableViewCell.xib */; };
+		549E87D0227F1337004F9A78 /* Chapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 549E87CF227F1337004F9A78 /* Chapter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +57,9 @@
 		549E87C4227DE50B004F9A78 /* VersePortraitTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VersePortraitTableViewCell.xib; sourceTree = "<group>"; };
 		549E87C7227DEDEA004F9A78 /* VerseLandscapeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerseLandscapeTableViewCell.swift; sourceTree = "<group>"; };
 		549E87C8227DEDEA004F9A78 /* VerseLandscapeTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VerseLandscapeTableViewCell.xib; sourceTree = "<group>"; };
+		549E87CB227F0E0B004F9A78 /* MarkReadTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkReadTableViewCell.swift; sourceTree = "<group>"; };
+		549E87CC227F0E0B004F9A78 /* MarkReadTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MarkReadTableViewCell.xib; sourceTree = "<group>"; };
+		549E87CF227F1337004F9A78 /* Chapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chapter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,10 +107,13 @@
 				546B88D71C4A5FF900B1FC20 /* VerseTableViewController.swift */,
 				549E87C3227DE50B004F9A78 /* VersePortraitTableViewCell.swift */,
 				549E87C4227DE50B004F9A78 /* VersePortraitTableViewCell.xib */,
+				549E87CB227F0E0B004F9A78 /* MarkReadTableViewCell.swift */,
+				549E87CC227F0E0B004F9A78 /* MarkReadTableViewCell.xib */,
 				549E87C7227DEDEA004F9A78 /* VerseLandscapeTableViewCell.swift */,
 				549E87C8227DEDEA004F9A78 /* VerseLandscapeTableViewCell.xib */,
 				546B88DB1C4BB65800B1FC20 /* Bible.swift */,
 				546B88DD1C4BB68200B1FC20 /* Book.swift */,
+				549E87CF227F1337004F9A78 /* Chapter.swift */,
 				546B88C01C4A160900B1FC20 /* Assets.xcassets */,
 				546B88C21C4A160900B1FC20 /* LaunchScreen.storyboard */,
 				546B88C51C4A160900B1FC20 /* Info.plist */,
@@ -177,6 +186,7 @@
 				546B88C11C4A160900B1FC20 /* Assets.xcassets in Resources */,
 				549E87CA227DEDEA004F9A78 /* VerseLandscapeTableViewCell.xib in Resources */,
 				546B88E31C4BC4B000B1FC20 /* data in Resources */,
+				549E87CE227F0E0B004F9A78 /* MarkReadTableViewCell.xib in Resources */,
 				0A1753762230181400E639BB /* LanguageTableViewCell.xib in Resources */,
 				549E87C6227DE50B004F9A78 /* VersePortraitTableViewCell.xib in Resources */,
 				546B88BF1C4A160900B1FC20 /* Main.storyboard in Resources */,
@@ -199,11 +209,13 @@
 				0A1753752230181400E639BB /* LanguageTableViewCell.swift in Sources */,
 				546B88CE1C4A1AD900B1FC20 /* BookCollectionViewCell.swift in Sources */,
 				549E87C5227DE50B004F9A78 /* VersePortraitTableViewCell.swift in Sources */,
+				549E87CD227F0E0B004F9A78 /* MarkReadTableViewCell.swift in Sources */,
 				546B88BA1C4A160900B1FC20 /* AppDelegate.swift in Sources */,
 				546B88D61C4A5F9E00B1FC20 /* BookCollectionViewController.swift in Sources */,
 				543496451FC48BC9007CFF98 /* Language.swift in Sources */,
 				546B88DE1C4BB68200B1FC20 /* Book.swift in Sources */,
 				546B88D81C4A5FF900B1FC20 /* VerseTableViewController.swift in Sources */,
+				549E87D0227F1337004F9A78 /* Chapter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
