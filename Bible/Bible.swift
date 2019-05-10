@@ -16,12 +16,14 @@ class Bible {
     var languages: [Language]
     var selectedIndexes: [Int]
     var readMarks = [Int: Date]()
+    var deadline = Calendar.current.dateComponents(Set<Calendar.Component>([.day, .month, .year]), from: Date())
     
     // MARK: Archiving Paths
     
     static let DocumentsDirectory = FileManager().urls(for: .documentDirectory, in: .userDomainMask).first!
     static let ArchiveURLLang = DocumentsDirectory.appendingPathComponent("languages")
     static let ArchiveURLRead = DocumentsDirectory.appendingPathComponent("readMarks")
+    static let ArchiveURLDeadline = DocumentsDirectory.appendingPathComponent("deadline")
     
     // MARK: Notification Key
     
@@ -196,6 +198,11 @@ class Bible {
             readMarks = savedReadMarks
         }
         
+        if let savedDeadline = NSKeyedUnarchiver.unarchiveObject(withFile: Bible.ArchiveURLDeadline.path) as? DateComponents {
+            print(savedDeadline)
+            deadline = savedDeadline
+        }
+        
         /* for debugging
         for i in 0..<languages.count {
             for (j, book) in books.enumerated() {
@@ -254,5 +261,71 @@ class Bible {
         }
         
         return (count, book.chapters)
+    }
+    
+    func toRefDate(date: Date) -> Date {
+        let refHour = 5
+        let calendar = Calendar.current
+        var dateComponents = calendar.dateComponents(Set<Calendar.Component>([.day, .month, .year, .hour]), from: date)
+        
+        if (dateComponents.hour! < refHour) {
+            dateComponents.hour = refHour
+            dateComponents.day = dateComponents.day! - 1
+        }
+        else {
+            dateComponents.hour = refHour
+        }
+        
+        return calendar.date(from: dateComponents)!
+    }
+    
+    func getUnread(limit: Int, refDate: Date) -> [Chapter] {
+        var chapters = [Chapter]()
+        var index = 0
+        
+        for book in books {
+            for chapter in 1...book.chapters {
+                if chapters.count == limit {
+                    return chapters
+                }
+                
+                let readMark = readMarks[index]
+                if readMark == nil || readMark! >= refDate {
+                    chapters.append(Chapter(bible: self, book: book.index, chapter: chapter))
+                }
+                
+                index += 1
+            }
+        }
+        
+        return chapters
+    }
+    
+    func getPlan() -> [Chapter] {
+        let refDate = toRefDate(date: Date())
+        var toReadCount = 1189
+        
+        for (_, value) in readMarks {
+            if value < refDate {
+                toReadCount -= 1
+            }
+        }
+        
+        var days = getDeadline().timeIntervalSince(refDate) / 86400 + 1
+        days.round(.up)
+        
+        var countForToday = Double(toReadCount) / days
+        countForToday.round(.up)
+        
+        return getUnread(limit: Int(countForToday), refDate: refDate)
+    }
+    
+    func getDeadline() -> Date {
+        return Calendar.current.date(from: deadline)!
+    }
+    
+    func setDeadline(_ date: Date) {
+        deadline = Calendar.current.dateComponents(Set<Calendar.Component>([.day, .month, .year]), from: date)
+        NSKeyedArchiver.archiveRootObject(deadline, toFile: Bible.ArchiveURLDeadline.path)
     }
 }

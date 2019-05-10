@@ -119,6 +119,10 @@ class BookCollectionViewController: UICollectionViewController {
                     vc.bible = bible
                     vc.book = bible?.getBook(indexPath!)
                 }
+            case "Show Plan":
+                if let vc = segue.destination as? PlanTableViewController {
+                    vc.bible = bible
+                }
             default: break
             }
         }

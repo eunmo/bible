@@ -27,6 +27,10 @@ class Chapter {
         return bible.isChapterMarkedRead(self.index)
     }
     
+    func getString() -> String {
+        return "\(bible.books[book].name) \(chapter)장"
+    }
+    
     func toggle() {
         bible.toggleChapter(self)
     }
