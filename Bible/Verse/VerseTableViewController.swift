@@ -15,6 +15,7 @@ class VerseTableViewController: UITableViewController {
     var bible: Bible?
     var book: Int?
     var chapter: Int?
+    var showBookTitle = false
     
     var verses = [String] ()
     var subVerses = [String]()
@@ -62,7 +63,11 @@ class VerseTableViewController: UITableViewController {
     }
     
     func updateUI() {
-        title = "\(chapter!)장"
+        if let bible = bible, let book = book, showBookTitle {
+            title = "\(bible.books[book].name) \(chapter!)장"
+        } else {
+            title = "\(chapter!)장"
+        }
     }
     
     func update() {

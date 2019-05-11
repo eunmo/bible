@@ -278,6 +278,9 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="LQl-zs-YSe" kind="show" identifier="Show Plan Verses" id="tzy-VP-oBu"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -295,4 +298,7 @@
             <point key="canvasLocation" x="2688.8000000000002" y="-9.4452773613193415"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="tzy-VP-oBu"/>
+    </inferredMetricsTieBreakers>
 </document>

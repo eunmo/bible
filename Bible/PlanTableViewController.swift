@@ -98,14 +98,26 @@ class PlanTableViewController: UITableViewController {
     }
     */
 
-    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
+        if let identifier = segue.identifier {
+            switch identifier {
+            case "Show Plan Verses":
+                if let vc = segue.destination as? VerseTableViewController {
+                    let indexPath = tableView?.indexPathsForSelectedRows![0]
+                    let chapter = chapters[indexPath!.row]
+                    vc.bible = bible
+                    vc.book = chapter.book
+                    vc.chapter = chapter.chapter
+                    vc.showBookTitle = true
+                }
+            default: break
+            }
+        }
     }
-    */
 
 }
