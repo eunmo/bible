@@ -20,6 +20,7 @@ class PlanTableViewController: UITableViewController {
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
+        NotificationCenter.default.addObserver(self, selector: #selector(PlanTableViewController.receiveNotification), name: NSNotification.Name(rawValue: Bible.notificationKey), object: nil)
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
@@ -27,6 +28,12 @@ class PlanTableViewController: UITableViewController {
             chapters = bible.getPlan()
             datePicker.date = bible.getDeadline()
         }
+    }
+    
+    @objc func receiveNotification() {
+        DispatchQueue.main.async(execute: { () -> Void in
+            self.tableView.reloadData()
+        })
     }
 
     @IBAction func onDeadlineChange(_ sender: UIDatePicker) {
