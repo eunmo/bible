@@ -199,7 +199,6 @@ class Bible {
         }
         
         if let savedDeadline = NSKeyedUnarchiver.unarchiveObject(withFile: Bible.ArchiveURLDeadline.path) as? DateComponents {
-            print(savedDeadline)
             deadline = savedDeadline
         }
         

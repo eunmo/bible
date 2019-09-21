@@ -74,14 +74,14 @@ class BookCollectionViewController: UICollectionViewController {
         let (read, count) = bible!.getChaptersRead(in: indexPath)
         
         if read == 0 {
-            cell.backgroundColor = UIColor.white
-            cell.label.textColor = UIColor.black
+            cell.backgroundColor = UIColor.systemBackground
+            cell.label.textColor = UIColor.label
         } else if read == count {
-            cell.backgroundColor = UIColor.black
-            cell.label.textColor = UIColor.white
+            cell.backgroundColor = UIColor.label
+            cell.label.textColor = UIColor.systemBackground
         } else {
-            cell.backgroundColor = UIColor.darkGray
-            cell.label.textColor = UIColor.white
+            cell.backgroundColor = UIColor.systemGray
+            cell.label.textColor = UIColor.label
         }
     
         return cell
@@ -91,7 +91,7 @@ class BookCollectionViewController: UICollectionViewController {
         
         switch kind {
             
-        case UICollectionElementKindSectionHeader:
+        case UICollectionView.elementKindSectionHeader:
             
             let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "BookCollectionViewHeader", for: indexPath) as! BookCollectionReusableView
             

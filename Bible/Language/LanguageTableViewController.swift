@@ -48,8 +48,6 @@ class LanguageTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: LanguageTableViewCell.identifier, for: indexPath)
         
         // Configure the cell...
-        let row = indexPath.row
-        let language = bible!.languages[row]
         if let cell = cell as? LanguageTableViewCell {
             cell.bible = bible
             cell.index = indexPath.row

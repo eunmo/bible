@@ -14,7 +14,7 @@ class LanguageTableViewCell: UITableViewCell {
     @IBOutlet weak var primaryLangButton: UIButton!
     @IBOutlet weak var secondaryLangButton: UIButton!
     
-    let blue = UIColor(red: 0/255, green: 122/255, blue: 255/255, alpha: 1)
+    let blue = UIColor.systemBlue
     
     var bible: Bible?
     
@@ -25,15 +25,15 @@ class LanguageTableViewCell: UITableViewCell {
                 langLabel.text = language.name
                 
                 if bible!.isSelected(section: 0, index: i) {
-                    primaryLangButton.setTitleColor(blue, for: UIControlState.normal)
+                    primaryLangButton.setTitleColor(blue, for: UIControl.State.normal)
                 } else {
-                    primaryLangButton.setTitleColor(UIColor.lightGray, for: UIControlState.normal)
+                    primaryLangButton.setTitleColor(UIColor.lightGray, for: UIControl.State.normal)
                 }
                 
                 if bible!.isSelected(section: 1, index: i) {
-                    secondaryLangButton.setTitleColor(blue, for: UIControlState.normal)
+                    secondaryLangButton.setTitleColor(blue, for: UIControl.State.normal)
                 } else {
-                    secondaryLangButton.setTitleColor(UIColor.lightGray, for: UIControlState.normal)
+                    secondaryLangButton.setTitleColor(UIColor.lightGray, for: UIControl.State.normal)
                 }
             }
         }
